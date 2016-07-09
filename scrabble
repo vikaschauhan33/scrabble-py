@@ -1,0 +1,38 @@
+
+#bench = ['a','h','j','k','e','d','n']
+bench = ['k','a','h','i','p','d','a']
+weight = {'a' : 1, 'b' : 3, 'c' : 3, 'd' : 2, 'e' : 1,  'f' : 4,
+          'g' : 2, 'h' : 4, 'i' : 1, 'j' : 8, 'k' : 8,  'l' : 1,
+          'm' : 3, 'n' : 1, 'o' : 1, 'p' : 3, 'q' : 10, 'r' : 1,
+          's' : 1, 't' : 1, 'u' : 1, 'v' : 4, 'w' : 4,  'x' : 8,
+          'y' : 4, 'z' : 10
+          }
+#legalwords = ["an","quizzer","lick","kuku","chika","he","den",'oz',"ked","jked","ahjkillegal","sausage","blubber","pencill","cloud","moon","water","computer","school"]
+legalwords = []
+f = open('words.txt','r')
+for wrd in f:
+    l = wrd.rstrip('\n')
+    legalwords.append(l)
+
+print len(legalwords)
+
+
+word = []
+for i in legalwords :
+    kl = 0
+    benchCopy = bench[0:]
+    wght = 0
+    for j in range(len(i)):
+        if i[j] not in benchCopy :
+            #print j
+            break;
+        else :
+          kl = kl+1
+          benchCopy.remove(i[j])
+          wght = wght + weight[i[j]]
+          if kl == len(i):
+              print i , wght
+
+
+
+
