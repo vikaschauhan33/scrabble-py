@@ -1,37 +1,39 @@
+# Code to find out possible words out of 7 characters/tiles player has
 
-#bench = ['a','h','j','k','e','d','n']
-bench = ['k','a','h','i','p','d','a']
+
+tiles  = ['k','a','h','i','p','d','a'] #Tiles represents all the 7 tiles availabe .
+
+# weight assigned to each alphbet in a game of scrabble
 weight = {'a' : 1, 'b' : 3, 'c' : 3, 'd' : 2, 'e' : 1,  'f' : 4,
           'g' : 2, 'h' : 4, 'i' : 1, 'j' : 8, 'k' : 8,  'l' : 1,
           'm' : 3, 'n' : 1, 'o' : 1, 'p' : 3, 'q' : 10, 'r' : 1,
           's' : 1, 't' : 1, 'u' : 1, 'v' : 4, 'w' : 4,  'x' : 8,
           'y' : 4, 'z' : 10
           }
-#legalwords = ["an","quizzer","lick","kuku","chika","he","den",'oz',"ked","jked","ahjkillegal","sausage","blubber","pencill","cloud","moon","water","computer","school"]
-legalwords = []
+
+legalwords = []  # list of legal words
+
+# Read all the legal words and form a list
 f = open('words.txt','r')
-for wrd in f:
-    l = wrd.rstrip('\n')
-    legalwords.append(l)
-
-print len(legalwords)
+for word in f:
+    l = word.rstrip('\n')  # To strip new line char if any
+    legalwords.append(l)   # Append all the words in the list
 
 
-word = []
 for i in legalwords :
-    kl = 0
-    benchCopy = bench[0:]
+    wordLen = 0
+    tilesCopy = tiles[0:] # create a copy of tiles as we need to remove tiles once used
     wght = 0
     for j in range(len(i)):
-        if i[j] not in benchCopy :
+        if i[j] not in tilesCopy : # Break if any one word can not be formed with the tiles
             #print j
             break;
         else :
-          kl = kl+1
-          benchCopy.remove(i[j])
-          wght = wght + weight[i[j]]
-          if kl == len(i):
-              print i , wght
+            wordLen = wordLen + 1  # to keep length ok the current word
+            tilesCopy.remove(i[j]) # remove the used tile . Can not use it again
+            wght = wght + weight[i[j]] # add weight of each character to get weight of word
+            if wordLen == len(i):  # print only when whole word can be formed with the tiles
+                print i , wght
 
 
 
