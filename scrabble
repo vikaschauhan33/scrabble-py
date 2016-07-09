@@ -1,9 +1,10 @@
 # Code to find out possible words out of 7 characters/tiles player has
 
 import operator
+import pprint
 
 
-tiles  = ['k','a','h','i','p','l','l'] #Tiles represents all the 7 tiles availabe .
+tiles  = ['k','a','h','q','e','l','l'] #Tiles represents all the 7 tiles availabe .
 
 # weight assigned to each alphbet in a game of scrabble
 weight = {'a' : 1, 'b' : 3, 'c' : 3, 'd' : 2, 'e' : 1,  'f' : 4,
@@ -36,9 +37,17 @@ for i in legalwords :
             tilesCopy.remove(i[j]) # remove the used tile . Can not use it again
             wght = wght + weight[i[j]] # add weight of each character to get weight of word
             if wordLen == len(i):  # print only when whole word can be formed with the tiles
-                print i , wght
+                #print i , wght
                 potentialWords[i] = wght
 
-print sorted(potentialWords.items(), key=operator.itemgetter(1), reverse = True)
+#pprint.pprint(sorted(potentialWords.items(), key=operator.itemgetter(1), reverse = True))
+#pprint.pprint(sorted(potentialWords.items(), key=len , reverse = True))
+len1 = 0
+for el in sorted(potentialWords, key=len , reverse = True):
 
+    if len1 != len(el) :
+        print "\n\n>>>>List of {} letters word".format(len(el))
+        len1=len(el)
+
+    print "\tcreate word {:7} with points {}".format(el , potentialWords[el])
 
