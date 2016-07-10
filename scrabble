@@ -3,8 +3,13 @@
 import operator
 import pprint
 
+tiles = []
+input1 = raw_input("Enter the tiles you have " )
+print "input is {}".format(input1)
+tiles = list(input1)
+print "\nYou have following tiles \t{}".format(tiles)
 
-tiles  = ['k','a','h','q','e','l','l'] #Tiles represents all the 7 tiles availabe .
+#tiles  = ['k','a','h','q','e','l','l'] #Tiles represents all the 7 tiles availabe .
 
 # weight assigned to each alphbet in a game of scrabble
 weight = {'a' : 1, 'b' : 3, 'c' : 3, 'd' : 2, 'e' : 1,  'f' : 4,
@@ -49,5 +54,5 @@ for el in sorted(potentialWords, key=len , reverse = True):
         print "\n\n>>>>List of {} letters word".format(len(el))
         len1=len(el)
 
-    print "\tcreate word {:7} with points {}".format(el , potentialWords[el])
+    print "\tcreate word \"{:7}\" with points {}".format(el , potentialWords[el])
 
